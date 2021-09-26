@@ -1,0 +1,63 @@
+.todo-wrapper {
+  margin: 0 auto;
+  max-width: 450px;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin: 20px;
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+  &__checkbox {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  &__title {
+    max-width: 150px;
+  }
+  &__date {
+    font-style: italic;
+    margin-left: auto;
+  }
+  &__btn {
+    cursor: pointer;
+    border-radius: 50%;
+    background: red;
+    color: #f0f0f0;
+    font-weight: bold;
+    margin: 0 10px;
+  }
+}
+
+.active {
+  color: #0b9b00;
+  border: 2px solid #0b9b00;
+}
+
+.done {
+  color: #8e0000;
+  border: 2px solid #8e0000;
+  .todo__title {
+    text-decoration: line-through;
+  }
+}
+
+.filter input {
+  width: 100%;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  padding: 0 0.5rem;
+}
+
+.todo-sort {
+  margin: 20px;
+  &__btn {
+    margin-left: 10px;
+  }
+}
