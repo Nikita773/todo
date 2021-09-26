@@ -1,0 +1,73 @@
+.todo-form-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.todo-form-container {
+  height: 30px;
+  .todo-form {
+    margin-right: 10px;
+    flex-basis: 80%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    padding: 0 .5rem;
+    &__btn {
+      $color: #eee;
+      flex-basis: 20%;
+      height: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      background: $color;
+      transition: .3s all;
+      cursor: pointer;
+
+      &:hover {
+        background: darken($color, 20%);
+      }
+    }
+
+  }
+}
+
+//.todo-form-wrapper {
+//  width: 500px;
+//  margin: 0 auto;
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//}
+//
+//.todo-form-container {
+//  display: flex;
+//  flex-direction: column;
+//}
+//
+//.todo-form {
+//  display: flex;
+//  padding: 5px;
+//  margin-right: 20px;
+//  height: auto;
+//  width: auto;
+//  &__btn {
+//    height: auto;
+//    width: auto;
+//  }
+//}
+
+.todo-form.ng-touched.ng-invalid {
+  border: 1px solid red;
+  &::placeholder {
+    color: red;
+  }
+}
+
+
+
+.danger {
+  color: red;
+}

@@ -1,0 +1,38 @@
+<div class="todo-wrapper">
+  <div class="filter">
+    <input
+      type="text"
+      placeholder="Filter todo..."
+      [(ngModel)]="searchString"
+    >
+  </div>
+
+  <div class="todo-sort">
+    <label>Sort by: </label>
+    <select [(ngModel)]="sortByParams">
+      <option value="description">Name</option>
+      <option value="date">Date</option>
+    </select>
+    <button (click)="onSortDirection()" class="todo-sort__btn">asc/desc</button>
+  </div>
+
+  <div class="todo-container todo"
+       [ngClass]="todo.completed ? 'done' : 'active'"
+       *ngFor="let todo of todosService.todos
+       | todosFilter: searchString
+       | todosSort: sortDirection: sortByParams;
+       let i = index">
+    <div class="todo__content">
+      <input type="checkbox" class="todo__checkbox"
+         [checked]="todo.completed"
+         (change)="todo.completed = !todo.completed"
+      >
+      <h3 class="todo__title">
+        <span class="todo__number">{{ i + 1 }}.</span>
+        {{ todo.description }}
+      </h3>
+    </div>
+    <p class="todo__date">{{ todo.date | date: 'medium' }}</p>
+    <button class="todo__btn remove" (click)="removeTodo(todo.id)">&times;</button>
+  </div>
+</div>
