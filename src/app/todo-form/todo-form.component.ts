@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ITodoItem} from "../todo-model/todo.model";
 import {TodosService} from "../services/todos.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -9,11 +9,12 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent implements OnInit {
-
   title = '';
   todoGroup: FormGroup;
 
-  constructor(private todosService: TodosService) { }
+  constructor(
+    private todosService: TodosService,
+  ) {}
 
   ngOnInit(): void {
     this.todoGroup = new FormGroup({

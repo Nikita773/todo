@@ -8,20 +8,16 @@
   align-items: center;
   border-radius: 10px;
   margin: 20px;
-  &__content {
-    display: flex;
-    align-items: center;
-  }
   &__checkbox {
-    margin-right: 10px;
     cursor: pointer;
   }
   &__title {
     max-width: 150px;
+    margin: 0 20px 0 10px;
   }
   &__date {
     font-style: italic;
-    margin-left: auto;
+    margin: 0 0 0 auto;
   }
   &__btn {
     cursor: pointer;
@@ -29,7 +25,7 @@
     background: red;
     color: #f0f0f0;
     font-weight: bold;
-    margin: 0 10px;
+    margin-left: 20px;
   }
 }
 
@@ -46,12 +42,11 @@
   }
 }
 
-.filter input {
+.filter {
+  display: flex;
   width: 100%;
   height: 30px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
+  border-bottom: 1px solid #ccc;
   padding: 0 0.5rem;
 }
 

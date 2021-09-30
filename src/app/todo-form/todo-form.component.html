@@ -1,14 +1,16 @@
-<div [formGroup]="todoGroup" class="todo-form-wrapper">
-  <div class="todo-form-container">
-    <input class="todo-form"
-         formControlName="name"
-         type="text"
-         placeholder="Add title..."
-         [(ngModel)]="title"
+<form [formGroup]="todoGroup" class="todo-form-wrapper">
+  <mat-form-field class="todo-form-container" appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput
+           class="todo-form"
+           formControlName="name"
+           type="text"
+           placeholder="Add title..."
+           [(ngModel)]="title"
     >
-    <div class="todo-form__text danger" *ngIf="todoName.name.invalid && todoName.name.touched">
-      Name is required
-    </div>
-  </div>
-  <button (click)="addTodo()" class="todo-form__btn">Add todo</button>
-</div>
+    <mat-error *ngIf="todoName.name.hasError('required')">
+      Title is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button (click)="addTodo()" class="todo-form__btn">Add todo</button>
+</form>
