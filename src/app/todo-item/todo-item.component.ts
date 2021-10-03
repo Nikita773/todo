@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ITodoItem} from "../todo-model/todo.model";
-import {TodosService} from "../services/todos.service";
+import {TodosService} from "../modules/todo/services/todos.service";
 
 @Component({
   selector: 'app-todo-item',
@@ -9,15 +9,11 @@ import {TodosService} from "../services/todos.service";
 })
 export class TodoItemComponent {
   @Input() todos: ITodoItem[];
+  @Output() toggle = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<number>();
   searchString = '';
   sortByParams = 'description';
   sortDirection = 'asc';
-
-  constructor(public todosService: TodosService) { }
-
-  removeTodo(id: number): void {
-    this.todosService.removeTodo(id);
-  }
 
   onSortDirection(): void {
     if (this.sortDirection === 'desc') {
@@ -25,5 +21,13 @@ export class TodoItemComponent {
     } else {
       this.sortDirection = 'desc';
     }
+  }
+
+  onToggle(id: number): void {
+    this.toggle.emit(id);
+  }
+
+  removeTodo(id: number): void {
+    this.delete.emit(id);
   }
 }

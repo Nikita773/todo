@@ -1,6 +1,4 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
-import {ITodoItem} from "../todo-model/todo.model";
-import {TodosService} from "../services/todos.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -9,12 +7,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent implements OnInit {
-  title = '';
+  @Output() create = new EventEmitter<string>();
+  description = '';
   todoGroup: FormGroup;
-
-  constructor(
-    private todosService: TodosService,
-  ) {}
 
   ngOnInit(): void {
     this.todoGroup = new FormGroup({
@@ -23,17 +18,10 @@ export class TodoFormComponent implements OnInit {
   }
 
   addTodo(): void {
-    const todo: ITodoItem = {
-      id: this.todosService.getTodoId(),
-      description: this.title,
-      completed: false,
-      date: Date.now()
+    if (this.description) {
+      this.create.emit(this.description);
+      this.description = '';
     }
-
-    if (this.title.trim()) {
-      this.todosService.addTodo(todo);
-    } else { return; }
-    this.title = '';
   }
 
   get todoName() {

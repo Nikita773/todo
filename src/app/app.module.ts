@@ -15,6 +15,10 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import {TodoModule} from "./modules/todo/todo.module";
 
 const MaterialComponents = [
   MatButtonModule,
@@ -40,7 +44,10 @@ const MaterialComponents = [
     MatCheckboxModule,
     MatOptionModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    TodoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
