@@ -11,7 +11,7 @@ export class TodosFilterPipe implements PipeTransform {
       return todos;
     }
     return todos.filter(todo => {
-      return todo.description.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+      return todo.description.toLowerCase().includes(search.toLowerCase());
     })
   }
 }

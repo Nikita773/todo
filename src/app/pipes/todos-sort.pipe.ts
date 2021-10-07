@@ -6,28 +6,17 @@ export type SortOrder = 'asc' | 'desc';
   name: 'todosSort',
 })
 export class TodosSortPipe implements PipeTransform {
-  transform(value: any[], sortOrder: SortOrder | string = 'asc', sortKey?: string): any {
-    sortOrder = sortOrder && (sortOrder.toLowerCase() as any);
+  transform(value: any[], sortOrder: SortOrder = 'asc', sortKey?: string): any[] {
 
     if (!value || (sortOrder !== 'asc' && sortOrder !== 'desc')) return value;
-
-    let numberArray = [];
-    let stringArray = [];
-
-    if (!sortKey) {
-      numberArray = value.filter(item => typeof item === 'number').sort();
-      stringArray = value.filter(item => typeof item === 'string').sort();
-    } else {
-      numberArray = value.filter(item => typeof item[sortKey] === 'number').sort((a, b) => a[sortKey] - b[sortKey]);
-      stringArray = value
-        .filter(item => typeof item[sortKey] === 'string')
-        .sort((a, b) => {
-          if (a[sortKey] < b[sortKey]) return -1;
-          else if (a[sortKey] > b[sortKey]) return 1;
-          else return 0;
-        });
-    }
-    const sorted = numberArray.concat(stringArray);
-    return sortOrder === 'asc' ? sorted : sorted.reverse();
+    const {compare} = new Intl.Collator();
+    return value.sort((a,b) => {
+      let c = sortOrder === 'desc' ? a : b;
+      let d = sortOrder === 'desc' ? b : a;
+      if(sortKey && typeof c === "object") {
+        return compare(c[sortKey], d[sortKey]);
+      }
+      return compare(c,d);
+    })
   }
 }

@@ -1,42 +1,29 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {ITodoItem} from "../todo-model/todo.model";
 import {TodosService} from "../services/todos.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
   styleUrls: ['./todo-form.component.scss']
 })
-export class TodoFormComponent implements OnInit {
-  title = '';
-  todoGroup: FormGroup;
+export class TodoFormComponent {
+  title = new FormControl('', Validators.required);
 
-  constructor(
-    private todosService: TodosService,
-  ) {}
-
-  ngOnInit(): void {
-    this.todoGroup = new FormGroup({
-      name: new FormControl('', Validators.required)
-    })
-  }
+  constructor(private todosService: TodosService) {}
 
   addTodo(): void {
     const todo: ITodoItem = {
       id: this.todosService.getTodoId(),
-      description: this.title,
+      description: this.title.value,
       completed: false,
       date: Date.now()
     }
 
-    if (this.title.trim()) {
+    if (this.title.value.trim()) {
       this.todosService.addTodo(todo);
     } else { return; }
-    this.title = '';
-  }
-
-  get todoName() {
-    return this.todoGroup.controls;
+    this.title.setValue('');
   }
 }
