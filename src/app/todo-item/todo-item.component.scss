@@ -1,0 +1,58 @@
+.todo-wrapper {
+  margin: 0 auto;
+  max-width: 450px;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin: 20px;
+  &__checkbox {
+    cursor: pointer;
+  }
+  &__title {
+    max-width: 150px;
+    margin: 0 20px 0 10px;
+  }
+  &__date {
+    font-style: italic;
+    margin: 0 0 0 auto;
+  }
+  &__btn {
+    cursor: pointer;
+    border-radius: 50%;
+    background: red;
+    color: #f0f0f0;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+}
+
+.active {
+  color: #0b9b00;
+  border: 2px solid #0b9b00;
+}
+
+.done {
+  color: #8e0000;
+  border: 2px solid #8e0000;
+  .todo__title {
+    text-decoration: line-through;
+  }
+}
+
+.filter {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  border-bottom: 1px solid #ccc;
+  padding: 0 0.5rem;
+}
+
+.todo-sort {
+  margin: 20px;
+  &__btn {
+    margin-left: 10px;
+  }
+}
