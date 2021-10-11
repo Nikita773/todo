@@ -19,6 +19,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {TodoModule} from "./modules/todo/todo.module";
+import { EffectsModule } from '@ngrx/effects';
 
 const MaterialComponents = [
   MatButtonModule,

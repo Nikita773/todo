@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {TodoCreateAction, TodoDeleteAction, TodoToggleAction} from "./modules/todo/store/todo.actions";
+import {todoCreate, todoDelete, todoToggle,} from "./modules/todo/store/todo.actions";
 import {TodoState} from "./modules/todo/store/todo.reducer";
 import {todoListSelector} from "./modules/todo/store/todo.selectors";
 import {TodosService} from "./modules/todo/services/todos.service";
@@ -24,14 +24,14 @@ export class AppComponent implements OnInit {
   }
 
   addTodo(description: string): void {
-    this.store$.dispatch(new TodoCreateAction({ description }))
+    this.store$.dispatch(todoCreate({ description }))
   }
 
   removeTodo(id: number): void {
-    this.store$.dispatch(new TodoDeleteAction({ id }))
+    this.store$.dispatch(todoDelete({ id }))
   }
 
   onToggle(id: number): void {
-    this.store$.dispatch(new TodoToggleAction({ id }))
+    this.store$.dispatch(todoToggle({ id }))
   }
 }

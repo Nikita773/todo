@@ -1,30 +1,19 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, EventEmitter, Output} from '@angular/core';
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
   styleUrls: ['./todo-form.component.scss']
 })
-export class TodoFormComponent implements OnInit {
+export class TodoFormComponent {
   @Output() create = new EventEmitter<string>();
-  description = '';
-  todoGroup: FormGroup;
-
-  ngOnInit(): void {
-    this.todoGroup = new FormGroup({
-      name: new FormControl('', Validators.required)
-    })
-  }
+  title = new FormControl('', Validators.required);
 
   addTodo(): void {
-    if (this.description) {
-      this.create.emit(this.description);
-      this.description = '';
+    if (this.title.value) {
+      this.create.emit(this.title.value);
+      this.title.setValue('');
     }
-  }
-
-  get todoName() {
-    return this.todoGroup.controls;
   }
 }

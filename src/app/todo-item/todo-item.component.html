@@ -2,7 +2,7 @@
   <div class="filter">
     <input matInput type="search"
       placeholder="Filter todo..."
-      [(ngModel)]="searchString"
+      [formControl]="searchString"
     >
     <mat-icon>search</mat-icon>
   </div>
@@ -10,7 +10,7 @@
   <div class="todo-sort">
     <mat-form-field appearance="fill">
       <mat-label>Sort by:</mat-label>
-      <mat-select [(ngModel)]="sortByParams">
+      <mat-select [formControl]="sortByParams">
         <mat-option value="description">Name</mat-option>
         <mat-option value="date">Date</mat-option>
       </mat-select>
@@ -24,13 +24,13 @@
   <mat-card class="todo-container todo"
        [ngClass]="todo.completed ? 'done' : 'active'"
        *ngFor="let todo of todos
-       | todosFilter: searchString
-       | todosSort: sortDirection: sortByParams;
+       | todosFilter: searchString.value
+       | todosSort: sortDirection: sortByParams.value;
        let i = index">
     <mat-checkbox class="todo__checkbox"
       color="primary"
       [checked]="todo.completed"
-      (click)="onToggle(todo.id)"
+      (change)="onToggle(todo.id)"
     ></mat-checkbox>
     <h3 class="todo__title">
       <span class="todo__number">{{ i + 1 }}.</span>

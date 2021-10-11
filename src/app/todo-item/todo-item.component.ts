@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ITodoItem} from "../todo-model/todo.model";
-import {TodosService} from "../modules/todo/services/todos.service";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-todo-item',
@@ -11,8 +11,8 @@ export class TodoItemComponent {
   @Input() todos: ITodoItem[];
   @Output() toggle = new EventEmitter<number>();
   @Output() delete = new EventEmitter<number>();
-  searchString = '';
-  sortByParams = 'description';
+  searchString = new FormControl('', Validators.required);
+  sortByParams = new FormControl('description', Validators.required);
   sortDirection = 'asc';
 
   onSortDirection(): void {
